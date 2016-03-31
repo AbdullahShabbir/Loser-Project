@@ -1,0 +1,119 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Other.master.cs" Inherits="Loser_v1.Webpages.Other" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+     <title></title>
+     <asp:ContentPlaceHolder ID="head" runat="server">
+     </asp:ContentPlaceHolder>
+
+     <link href="../CSS/bootstrap.min.css" rel="stylesheet" />
+     <link href="../CSS/main_style.css" rel="stylesheet" />
+
+</head>
+
+<body>
+     <form id="form1" runat="server">
+          <ajaxToolkit:ToolkitScriptManager ID="ScriptManager1" runat="server"></ajaxToolkit:ToolkitScriptManager>
+
+          <div class="wrapper">
+               <div class="box">
+
+                    <div class="row row-offcanvas row-offcanvas-left">
+
+                         <div class="column" id="main">
+                              <!-- top nav -->
+                              <div class="navbar navbar-blue navbar-static-top" style="width:100%">
+                                   <div class="navbar-header">
+                                        <a href="User_Page.aspx" class="navbar-brand logo">LOOSER</a>
+                                   </div>
+                                   <nav class="collapse navbar-collapse" role="navigation">
+                                        <div class="navbar-form navbar-left">
+                                             <div class="input-group input-group-sm" style="max-width: 360px;">
+                                                  <asp:TextBox ID="tb_search" CssClass="form-control" placeholder="Search for people, cases and things" runat="server"></asp:TextBox>
+                                                  <ajaxToolkit:AutoCompleteExtender ID="ace_search" TargetControlID="tb_search" ServicePath="~/Services/Search.asmx" ServiceMethod="getName" MinimumPrefixLength="1" EnableCaching="true" runat="server"></ajaxToolkit:AutoCompleteExtender>
+
+                                                  <div class="input-group-btn">
+                                                       <asp:ImageButton ID="btn_search" CssClass="btn btn-default" ImageUrl="~/Image/search.PNG" runat="server" OnClick="btn_search_Click" CausesValidation="false"/>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <ul class="nav navbar-nav">
+                                             <li>
+                                                  <asp:HyperLink ID="hl_name" Font-Bold="true" Font-Size="Medium" runat="server"></asp:HyperLink></li>
+                                             <li><a href="User_Page.aspx">Home</a></li>
+                                             <li><a href="Add_Case.aspx">Add Your Case</a> </li>
+                                             <li><a href="Your_Case.aspx">See Your Case</a> </li>
+                                             <li><a href="Your_About.aspx">See Your Profile</a> </li>
+                                             <li><a href="Your_Notification.aspx"><asp:Label ID="lb_notification" runat="server" Text="Notification"></asp:Label></a> </li>
+                                        </ul>
+                                        <ul class="nav navbar-nav navbar-right">
+                                             <li>
+                                                  <a href="My_Home.aspx">Signout</a>
+                                             </li>
+                                        </ul>
+                                   </nav>
+                              </div>
+                              <!-- /top nav -->
+
+                              <div class="padding">
+                                   <div class="full col-sm-9" id="middle">
+
+                                        <nav class="navbar navbar-default" style="width: 1050px; top:-20px;">
+                                             <div class="container-fluid">
+                                                  <div class="navbar-header">
+                                                       <asp:Label ID="lb_otheruser" runat="server" CssClass="navbar-brand" Text=""></asp:Label>
+                                                  </div>
+
+                                                  <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                                       <ContentTemplate>
+                                                            <div>
+                                                                 <ul class="nav navbar-nav">
+                                                                      <li>
+                                                                           <asp:HyperLink ID="hl_about" runat="server">About</asp:HyperLink>
+                                                                      </li>
+                                                                      <li>
+                                                                           <asp:HyperLink ID="hl_case" runat="server">Case</asp:HyperLink>
+                                                                      </li>
+                                                                      <li>
+                                                                           <asp:HyperLink ID="hl_friend" runat="server">Friends</asp:HyperLink>
+                                                                      </li>
+                                                                      <li>
+                                                                           <asp:HyperLink ID="hl_achievements" runat="server">Achievements</asp:HyperLink>
+                                                                      </li>
+                                                                      <li style="margin-right: 300px">
+                                                                           <asp:HyperLink ID="hl_trophy" runat="server">Trophy Cabinet</asp:HyperLink>
+                                                                      </li>
+
+                                                                      <li style="margin-right: 10px; margin-top: 7px;">
+                                                                           <asp:Button ID="btn_follow" runat="server" Text="Follow" CssClass="btn btn-info" OnClick="btn_follow_Click" />
+                                                                      </li>
+                                                                      <li style="margin-top: 7px;">
+                                                                           <asp:Button ID="btn_block" runat="server" Text="Block" CssClass="btn btn-danger" OnClick="btn_block_Click" />
+                                                                      </li>
+
+                                                                 </ul>
+                                                            </div>
+                                                       </ContentTemplate>
+                                                       <Triggers>
+                                                            <asp:AsyncPostBackTrigger ControlID="btn_follow" EventName="Click" />
+                                                            <asp:AsyncPostBackTrigger ControlID="btn_block" EventName="Click" />
+                                                       </Triggers>
+                                                  </asp:UpdatePanel>
+
+                                             </div>
+                                        </nav>
+     
+                                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                        </asp:ContentPlaceHolder>
+
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </form>
+</body>
+</html>
